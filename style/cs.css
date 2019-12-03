@@ -1,0 +1,85 @@
+#uipx-canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9998;
+}
+/* 标尺 */
+#__uipx-staff-gauge {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+}
+#__uipx-staff-gauge p {
+  margin: 0;
+}
+.__uipx-line-a, .__uipx-line-b {
+  position: absolute;
+  left: 0;
+  right: 0;
+  cursor: n-resize;
+}
+.__uipx-line-a {
+  z-index: 9;
+}
+.__uipx-line-b {
+  z-index: 8;
+}
+.__uipx-line-mid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #61ffff;
+}
+.__uipx-tm-dis {
+  position: absolute;
+  left: 40px;
+  width: 1px;
+}
+.__uipx-dis-half-a, .__uipx-dis-half-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  background-color: #61ffff;
+}
+.__uipx-distance-txt {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  white-space: nowrap;
+  color: #ff5555;
+}
+
+.__uipx-vertical-line-box .__uipx-line-a {
+  z-index: 11;
+}
+.__uipx-vertical-line-box .__uipx-line-b {
+  z-index: 10;
+}
+.__uipx-vertical-line-box .__uipx-line-mid {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 1px;
+}
+.__uipx-vertical-line-box .__uipx-tm-dis {
+  top: 40px;
+  height: 1px;
+}
+.__uipx-vertical-line-box .__uipx-dis-half-a, .__uipx-vertical-line-box .__uipx-dis-half-b {
+  top: 0;
+  left: 0;
+  height: 1px;
+}
+.__uipx-vertical-line-box .__uipx-distance-txt {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
