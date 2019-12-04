@@ -26,13 +26,6 @@
 .__uipx-shear-color .__uipx-color-item input {
   width: 50px;
 }
-/* canvas */
-#__uipx-canvas {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 9998;
-}
 /* 通用按钮 */
 .__uipx-btn {
   line-height: 26px;

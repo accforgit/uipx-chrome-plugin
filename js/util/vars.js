@@ -1,6 +1,6 @@
 const VARS = {
   // append 到页面上进行对比的 canvas 的 Id
-  diffCanvasId: 'uipx-canvas',
+  diffCanvasId: '__uipx-canvas',
   // popup.js 给 cs.js 传递的对比图片 base64 数据体的 name 属性值
   imgBase64Name: 'imgBase64',
   // popup.js 给 cs.js 传递的 指定canvas跟随页面滚动的 数据体的 name 属性值
