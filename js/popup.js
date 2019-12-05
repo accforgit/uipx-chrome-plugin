@@ -4,6 +4,11 @@ const btnActiveClassName = '__uipx-btn-active'
 const opacityClassName = '__uipx-color-item'
 // 删除 透明色值 li.className 的按钮的 className
 const delOpacityClassName = '__uipx-del-color-btn'
+// 微调按钮
+const microTopClassName = '__uipx-micro-top'
+const microRightClassName = '__uipx-micro-right'
+const microBottomClassName = '__uipx-micro-bottom'
+const microLeftClassName = '__uipx-micro-left'
 
 const inputFile = $('#__uipx-picfile')
 const img = $('#__uipx-img')
@@ -40,7 +45,11 @@ const listenerList = [
   { ele: sgCheck, listenerName: 'click', fn () { sgCheckFn(); } },
   // 管理需要完全透明的颜色值
   { ele: $('#__uipx-add-color-btn'), listenerName: 'click', fn: addOpacityColorFn },
-  { ele: $('#__uipx-color-list'), listenerName: 'click', fn: delOpacityColorFn }
+  { ele: $('#__uipx-color-list'), listenerName: 'click', fn: delOpacityColorFn },
+  // 删除当前对比的图片
+  { ele: $('.__uipx-img-del')[0], listenerName: 'click', fn: delDiffImgFn },
+  // canvas 位置微调
+  { ele: $('.__uipx-micro-content')[0], listenerName: 'click', fn: microActionFn }
 ]
 const beforeFn = (item, e) => {
   if (item.ele !== inputFile) {
@@ -126,6 +135,38 @@ function delOpacityColorFn (e) {
     e.target.parentNode.parentNode.removeChild(e.target.parentNode)
     saveInputColorList()
     imgHandle()
+  }
+}
+// canvas 删除
+function delDiffImgFn (e) {
+  bg.setDiffImg()
+  img.src = ''
+  img.style.display = 'none'
+  sendMessage({
+    name: VARS.diffImgDelName
+  })
+}
+// canvas 位置微调
+function microActionFn (e) {
+  const classList = e.target.classList
+  const data = {
+    x: 0,
+    y: 0
+  }
+  if (classList.contains(microTopClassName)) {
+    data.y = -1
+  } else if (classList.contains(microRightClassName)) {
+    data.x = 1
+  } else if (classList.contains(microBottomClassName)) {
+    data.y = 1
+  } else if (classList.contains(microLeftClassName)) {
+    data.x = -1
+  }
+  if (data.x || data.y) {
+    sendMessage({
+      name: VARS.microActionName,
+      data
+    })
   }
 }
 // #endregion

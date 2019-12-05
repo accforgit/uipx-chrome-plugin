@@ -13,6 +13,10 @@ const VARS = {
   carpCheckName: 'carpCheck',
   // popup.js 给 cs.js 传递的进行 canvas 标尺 数据体的 name 属性值
   staffGaugeName: 'staffGauge',
+  // popup.js 给 cs.js 传递的通知对比UI被主动删除的 name 属性值
+  diffImgDelName: 'diffImgDel',
+  // popup.js 给 cs.js 传递的 canvas进行位置微调 name 属性值
+  microActionName: 'microAction',
   // 本地储存颜色的 key
   colorListName: 'colorList'
 }
