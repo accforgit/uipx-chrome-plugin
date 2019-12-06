@@ -239,6 +239,7 @@ function diffImgDel () {
   canvasPosition.reset()
   followCheckScroll.reset()
   invokeImg.container.removeChild(canvas)
+  invokeImg.bgData = null
   canvas = null
 }
 
