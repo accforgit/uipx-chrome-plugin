@@ -59,6 +59,7 @@ const invokeImg = {
     img.src = bgData.base64
     img.onload = () => {
       const width = bgData.isUseUISize ? img.width : clienW
+      const isSizeChanged = canvas.style.width.slice(0, -2) !== String(width)
       const scale = img.width / width
       const height = img.height / scale
       canvas.width = width
@@ -76,8 +77,10 @@ const invokeImg = {
       ctx.clearRect(0, 0, width, height)
       ctx.putImageData(imgData, 0, 0)
       this.container.appendChild(canvas)
-      // 位置恢复，切换 sizeCheckName 的时候元素可能完全跑到页面外去了，所以这里统一恢复一下位置
-      canvasPosition.reset()
+      if (isSizeChanged) {
+        // 位置恢复，切换 sizeCheckName 的时候元素可能完全跑到页面外去了，所以这里统一恢复一下位置
+        canvasPosition.reset()
+      }
     }
   },
   // 设置透明
