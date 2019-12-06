@@ -15,6 +15,7 @@ const img = $('#__uipx-img')
 const cpi = $('#__uipx-cpi')
 const followCheck = $('#__uipx-follow-check')
 const carpCheck = $('#__uipx-carp-check')
+const sizeCheck = $('#__uipx-size-check')
 const sgCheck = $('#__uipx-sg-check')
 const colorList = $('#__uipx-color-list')
 const bg = chrome.extension.getBackgroundPage()
@@ -37,6 +38,8 @@ const listenerList = [
   { ele: $('.__uipx-icon-cut')[0], listenerName: 'click', fn () { cpiUpdate(-1) } },
   // canvas 滑动后位置恢复
   { ele: $('#__uipx-reset'), listenerName: 'click', fn: resetPositionFn },
+  // canvas 的尺寸是否使用原图的
+  {ele: sizeCheck, listenerName: 'click', fn: sizeCheckFn },
   // canvas 跟随页面滚动
   { ele: followCheck, listenerName: 'click', fn: followCheckFn },
   // canvas 反相
@@ -96,6 +99,12 @@ function cpiUpdate (step) {
 // canvas 滑动后位置恢复
 function resetPositionFn () {
   sendMessage({ name: VARS.canvasPResetName })
+}
+// canvas 的尺寸是否使用原图的
+function sizeCheckFn () {
+  this.classList.toggle(btnActiveClassName)
+  bg.setIsUseUISize(this.classList.contains(btnActiveClassName))
+  imgHandle(VARS.sizeCheckName)
 }
 // canvas 跟随页面滚动
 function followCheckFn (onlyRefresh) {
@@ -175,6 +184,7 @@ function initDomStatus () {
   followCheck.classList.toggle(btnActiveClassName, bg.getFollowScroll())
   carpCheck.classList.toggle(btnActiveClassName, bg.getCarpCheck())
   sgCheck.classList.toggle(btnActiveClassName, bg.getSgCheck())
+  sizeCheck.classList.toggle(btnActiveClassName, bg.getIsUseUISize())
   cpi.value = bg.getCanvasOpacity()
   initColorItem()
 }
@@ -241,7 +251,8 @@ async function imgHandle (name = VARS.imgBase64Name) {
   sendMessage({ name, data: {
     base64: bg.getDiffImg(),
     opacityColorList: await bg.getOpacityColorList(),
-    isColorReverse: bg.getCarpCheck()
+    isColorReverse: bg.getCarpCheck(),
+    isUseUISize: bg.getIsUseUISize()
   }}, () => {
     // 标尺
     sgCheckFn(bg.getSgCheck())

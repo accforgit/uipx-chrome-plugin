@@ -10,6 +10,8 @@ let canvasOpacity = '10'
 let carpCheck = false
 // 标尺
 let sgCheck = false
+// canvas 尺寸，是否使用UI设计稿原图尺寸，默认使用宽度铺满设备宽度，长度等比例缩放的尺寸
+let isUseUISize = false
 
 function setDiffImg (v) {
   diffImg = v
@@ -64,6 +66,13 @@ function setSgCheck (v) {
 }
 function getSgCheck () {
   return sgCheck
+}
+
+function setIsUseUISize (v) {
+  isUseUISize = v
+}
+function getIsUseUISize () {
+  return isUseUISize
 }
 
 
